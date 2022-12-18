@@ -1,4 +1,11 @@
 use std::io::prelude::*;
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize)]
+struct Config{
+    name: String,
+    age: u8
+}
 
 fn main() {
     let file = std::fs::File::open("./config.json");
@@ -20,7 +27,7 @@ fn main() {
         },
     }
 
-    let parsed = json::parse(content.as_str()).unwrap();
+    let parsed: Config = serde_json::from_str(content.as_str()).unwrap();
 
-    println!("{:#}",parsed);
+    println!("{:?}",parsed);
 }
