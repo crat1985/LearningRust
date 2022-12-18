@@ -2,7 +2,3 @@
 name = "project_1"
 version = "0.1.0"
 edition = "2021"
-
-[dependencies]
-serde = "1.0.151"
-serde_json = "1.0.91"
