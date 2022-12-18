@@ -1,7 +1,7 @@
 use std::io::prelude::*;
 
 fn main() {
-    let file = std::fs::File::open("./src/main.rs");
+    let file = std::fs::File::open("./config.json");
 
     match file {
         Err(e) => panic!("Erreur lors de la lecture du fichier ! {e}"),
@@ -20,5 +20,7 @@ fn main() {
         },
     }
 
-    println!("{content}");
+    let parsed = json::parse(content.as_str()).unwrap();
+
+    println!("{:#}",parsed);
 }
