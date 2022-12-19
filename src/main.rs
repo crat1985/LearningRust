@@ -1,5 +1,13 @@
 use std::io::prelude::*;
 
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Deserialize, Serialize)]
+struct Person {
+    name: String,
+    age: usize
+}
+
 fn main() {
     let file = std::fs::File::open("./config.json");
 
@@ -19,4 +27,8 @@ fn main() {
             return;
         },
     }
+
+    let person: Vec<Person> = serde_json::from_str(content.as_str()).unwrap();
+
+    println!("{:?}", person);
 }
